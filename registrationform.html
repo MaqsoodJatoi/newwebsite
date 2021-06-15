@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href="registrationformstyle.css" rel="stylesheet">
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="con-12">
+          <nav class="navbar navbar-expand-lg navbar-dark">
+            <button type="button" class="navbar-toggler ml-auto mr-auto" data-toggle="collapse" data-target="#myNavbar" name="button"><span class="navbar-toggler-icon"></span></button>
+            <div id="myNavbar" class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">What Process</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">What I Do</a></li>
+                <li class="nav-item"><a href="registrationform.html" class="nav-link active">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center pt-3">
+        <div class="col-lg-5 col-9 registration-form p-3 rounded" style="background: rgba(0,0,0,0.4)">
+          <div class="heading py-3">
+            <h3>Registration Form</h3>
+          </div>
+          <form id="form" class="form" method="post">
+            <div class="form-group">
+              <label for="" class="m-0">Username</label>
+              <input id="username" type="text" name="" class="form-control" value="">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+              <small>Error Message</small>
+            </div>
+            <div class="form-group">
+              <label for="" class="m-0">Email</label>
+              <input id="email" type="email" name="" class="form-control" value="">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+              <small>Error Message</small>
+            </div>
+            <div class="form-group">
+              <label for="" class="m-0">Password</label>
+              <input id="password" type="password" name="" class="form-control" value="">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+              <small>Error Message</small>
+            </div>
+            <div class="form-group">
+              <label for="" class="m-0">Confirm Password</label>
+              <input id="confirmpassword" type="password" name="" class="form-control" value="">
+              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-exclamation-circle"></i>
+              <small>Error Message</small>
+            </div>
+            <button type="submit" class="btn btn-danger w-100" name="button">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+      const form = document.getElementById('form');
+      const username = document.getElementById('username');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const confirmpassword = document.getElementById('confirmpassword');
+
+      form.addEventListener("submit",function(e) {
+        e.preventDefault();
+
+        checkInputs();
+
+      });
+
+      //Send Data function
+
+      function sendData(usernameValue, sRate, count){
+        if (sRate === count) {
+          alert("Welcome" + " " + usernameValue);
+          location.reload();
+        }
+      }
+
+
+      //For final succesMsg Function
+
+      function succesMsg(usernameValue) {
+        let formGroup = document.getElementsByClassName('form-group');
+        var count = formGroup.length - 1;
+        for (var i = 0; i < formGroup.length; i++) {
+          if(formGroup[i].className === "form-group succes"){
+            var sRate = 0 + i;
+            sendData(usernameValue, sRate, count);
+          }else{
+            return false;
+          }
+        }
+
+      }
+
+
+
+      // checkInputs Function
+
+      function checkInputs() {
+
+        const usernameValue = username.value.trim();
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const confirmpasswordValue = confirmpassword.value.trim();
+
+        if(usernameValue === ""){
+          //add error message
+          //add error class
+          setErrorFor(username, 'Username Cannot Be Blank');
+        }else if(usernameValue.length <= 4 || usernameValue.length >= 20){
+          //add error message
+          //add error class
+          setErrorFor(username, 'UserName Must Be of 4 to 20 Characters');
+        }else{
+          //add succes class
+          setSuccesFor(username);
+
+        }
+
+
+
+        if(emailValue === ""){
+          //add error message
+          //add error class
+          setErrorFor(email, 'Email Cannot Be Black');
+        }else if(emailValue.charAt(emailValue.length-4) != "."){
+          //add error message
+          //add error class
+          setErrorFor(email, "'.' is not at Position");
+        }else{
+          //add succes class
+          setSuccesFor(email);
+
+        }
+
+        if(passwordValue === ""){
+          //add error message
+          //add error class
+          setErrorFor(password, 'Password Cannot Be Black');
+        }else if(passwordValue.length <= 6 || passwordValue.length >= 20){
+          //add error message
+          //add error class
+          setErrorFor(password, "Password must be of 6 to 20 Letters");
+        }else{
+          //add succes class
+          setSuccesFor(password);
+
+        }
+
+        if(confirmpasswordValue == ''){
+          //add error message
+          //add error class
+          setErrorFor(confirmpassword, 'Confirm Password Cannot Be Blank');
+        }else if(confirmpasswordValue != passwordValue){
+          //add error message
+          //add error class
+          setErrorFor(confirmpassword, 'Password not Matched');
+        }else{
+          //add succes class
+          setSuccesFor(confirmpassword);
+        }
+
+        succesMsg(usernameValue);
+
+        function setErrorFor(input, message){
+          const formGroup = input.parentElement;
+          const small = formGroup.querySelector('small');
+
+          small.innerText = message;
+          formGroup.className = "form-group error";
+        }
+        function setSuccesFor(input){
+          const formGroup = input.parentElement;
+          const value = input.value;
+          formGroup.className = "form-group succes";
+        }
+
+      }
+
+
+    </script>
+
+  </body>
+</html>

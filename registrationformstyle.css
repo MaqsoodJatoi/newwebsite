@@ -1,0 +1,47 @@
+.nav-link.active::after{
+    content: "";
+    display: block;
+    background: yellow;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 2px;
+    margin-top: 5px;
+}
+.nav-link:hover:after{
+    content: "";
+    display: block;
+    background: yellow;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 2px;
+    margin-top: 5px;
+}
+.form-group>svg{
+  position: absolute;
+  margin-top: -28px;
+  right: 25px;
+  visibility: hidden;
+}
+small{
+  visibility: hidden;
+}
+.succes input{
+  border: 2px solid #2ecc71;
+}
+.error input{
+  border: 2px solid #e74c3c;
+}
+.succes>svg.fa-check-circle{
+  color: green;
+  visibility: visible;
+}
+.error>svg.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+}
+.error>small{
+  color: red;
+  visibility: visible;
+}
